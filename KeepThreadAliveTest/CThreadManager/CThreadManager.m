@@ -1,24 +1,23 @@
 //
-//  MyThreadManager.m
+//  CThreadManager.m
 //  KeepThreadAliveTest
 //
 //  Created by wdyzmx on 2020/4/21.
 //  Copyright © 2020 wdyzmx. All rights reserved.
 //
 
-#import "MyThreadManager.h"
+#import "CThreadManager.h"
 
-@interface MyThreadManager () <NSCopying, NSMutableCopying>
+@interface CThreadManager () <NSCopying, NSMutableCopying>
 @property (nonatomic, strong) MyThread *thread;
-@property (nonatomic, assign) BOOL isStoped;
 @property (nonatomic, copy) TaskBlock block;
 @end
 
-@implementation MyThreadManager
+@implementation CThreadManager
 
 #ifdef USE_SINGLETON
 
-static MyThreadManager *manager;
+static CThreadManager *manager;
 static dispatch_once_t onceToken;
 // 创建单例
 + (instancetype)shareInstace {
@@ -47,19 +46,23 @@ static dispatch_once_t onceToken;
 
 #endif
 
+#pragma mark - 初始化
 // 初始化
 - (instancetype)init {
     if (self = [super init]) {
-        self.isStoped = NO;
         // 创建线程
-        __weak typeof(self)weakSelf = self;
         self.thread = [[MyThread alloc] initWithBlock:^{
-            // runLoop添加port保活线程
-            [[NSRunLoop currentRunLoop] addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
-            // 开启runLoop
-            while (weakSelf && !weakSelf.isStoped) {
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-            }
+            NSLog(@"begin - %@", [NSThread currentThread]);
+            // 创建上下文(初始化结构体为0)
+            CFRunLoopSourceContext context = {0};
+            // 创建source
+            CFRunLoopSourceRef source = CFRunLoopSourceCreate(kCFAllocatorDefault, 0,&context);
+            // 添加source
+            CFRunLoopAddSource(CFRunLoopGetCurrent(), source, kCFRunLoopDefaultMode);
+            // 销毁source
+            CFRelease(source);
+            //启动（第三个参数returnAfterSourceHandled==true,表示执行source后就退出runLoop,所以设置为false）
+            CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0e10, false);
             NSLog(@"end - %@", [NSThread currentThread]);
         }];
     }
@@ -91,6 +94,7 @@ static dispatch_once_t onceToken;
     }
 }
 
+#pragma mark - 执行任务task
 - (void)executeTask:(TaskBlock)block {
     if (!self.thread) {
         return;
@@ -101,6 +105,7 @@ static dispatch_once_t onceToken;
     [self performSelector:@selector(__executeTask:) onThread:self.thread withObject:block waitUntilDone:NO];
 }
 
+#pragma mark - dealloc
 - (void)dealloc {
     NSLog(@"%s", __func__);
     [self stop];
@@ -108,8 +113,6 @@ static dispatch_once_t onceToken;
 
 #pragma mark - private method
 - (void)__stop {
-    // isStoped
-    self.isStoped = YES;
     // stop runLoop
     CFRunLoopStop(CFRunLoopGetCurrent());
     // 置nil
@@ -121,7 +124,5 @@ static dispatch_once_t onceToken;
     self.block = block;
     self.block();
 }
-
-
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import "ThreadTaskViewController.h"
-#import "MyThreadManager.h"
+#import "OCThreadManager.h"
+#import "CThreadManager.h"
 
 @interface ThreadTaskViewController ()
-@property (nonatomic, strong) MyThreadManager *threadManager;
+//@property (nonatomic, strong) OCThreadManager *threadManager;  // oc版本
+@property (nonatomic, strong) CThreadManager *threadManager;  // c版本
 @end
 
 @implementation ThreadTaskViewController
@@ -32,7 +34,8 @@
     [btn2 addTarget:self action:@selector(buttonClick2:) forControlEvents:UIControlEventTouchUpInside];
     
 #ifndef USE_SINGLETON
-    self.threadManager = [[MyThreadManager alloc] init];
+//    self.threadManager = [[OCThreadManager alloc] init];  // oc版本
+    self.threadManager = [[CThreadManager alloc] init];  // c版本
 #else
     
 #endif
@@ -41,8 +44,11 @@
 
 - (void)buttonClick:(UIButton *)btn {
 #ifdef USE_SINGLETON
-    [[MyThreadManager shareInstace] executeTask:^{
-        // 处理回调
+//    [[OCThreadManager shareInstace] executeTask:^{  // oc版本
+//        // 处理回调
+//    }];
+    [[CThreadManager shareInstace] executeTask:^{  // c版本
+        //
     }];
 #else
     [self.threadManager executeTask:^{
@@ -54,7 +60,8 @@
 - (void)buttonClick2:(UIButton *)btn {
     // 手动停止runloop,thread
 #ifdef USE_SINGLETON
-    [[MyThreadManager shareInstace] stop];
+//    [[OCThreadManager shareInstace] stop];  // oc版本
+    [[CThreadManager shareInstace] stop];  // c版本
 #else
     [self.threadManager stop];
 #endif
@@ -63,7 +70,8 @@
 - (void)dealloc {
     NSLog(@"%s", __func__);
 #ifdef USE_SINGLETON
-    [[MyThreadManager shareInstace] stop];
+//    [[OCThreadManager shareInstace] stop];  // oc版本
+    [[CThreadManager shareInstace] stop];  // c版本
 #else
     
 #endif

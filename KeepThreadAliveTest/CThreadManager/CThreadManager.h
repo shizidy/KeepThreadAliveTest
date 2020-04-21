@@ -1,5 +1,5 @@
 //
-//  MyThreadManager.h
+//  CThreadManager.h
 //  KeepThreadAliveTest
 //
 //  Created by wdyzmx on 2020/4/21.
@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^TaskBlock)(void);
 
-@interface MyThreadManager : NSObject
+@interface CThreadManager : NSObject
 
 #ifdef USE_SINGLETON
 /// 单例

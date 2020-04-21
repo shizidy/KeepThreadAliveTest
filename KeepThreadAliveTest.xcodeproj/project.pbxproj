@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7415460B244EC07600B13EE1 /* ThreadTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7415460A244EC07600B13EE1 /* ThreadTaskViewController.m */; };
+		7415460E244F146900B13EE1 /* CThreadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7415460D244F146900B13EE1 /* CThreadManager.m */; };
+		74154611244F147D00B13EE1 /* OCThreadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74154610244F147D00B13EE1 /* OCThreadManager.m */; };
 		74902D9F244E9DE0006A6972 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902D9E244E9DE0006A6972 /* AppDelegate.m */; };
 		74902DA2244E9DE0006A6972 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902DA1244E9DE0006A6972 /* SceneDelegate.m */; };
 		74902DA5244E9DE0006A6972 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902DA4244E9DE0006A6972 /* ViewController.m */; };
@@ -18,7 +20,6 @@
 		74902DBA244E9DE2006A6972 /* KeepThreadAliveTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902DB9244E9DE2006A6972 /* KeepThreadAliveTestTests.m */; };
 		74902DC5244E9DE2006A6972 /* KeepThreadAliveTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902DC4244E9DE2006A6972 /* KeepThreadAliveTestUITests.m */; };
 		74902DD4244E9ECF006A6972 /* MyThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902DD3244E9ECF006A6972 /* MyThread.m */; };
-		74902DD7244EA0EF006A6972 /* MyThreadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 74902DD6244EA0EF006A6972 /* MyThreadManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,10 @@
 /* Begin PBXFileReference section */
 		74154609244EC07600B13EE1 /* ThreadTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadTaskViewController.h; sourceTree = "<group>"; };
 		7415460A244EC07600B13EE1 /* ThreadTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadTaskViewController.m; sourceTree = "<group>"; };
+		7415460C244F146900B13EE1 /* CThreadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CThreadManager.h; sourceTree = "<group>"; };
+		7415460D244F146900B13EE1 /* CThreadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CThreadManager.m; sourceTree = "<group>"; };
+		7415460F244F147D00B13EE1 /* OCThreadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCThreadManager.h; sourceTree = "<group>"; };
+		74154610244F147D00B13EE1 /* OCThreadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCThreadManager.m; sourceTree = "<group>"; };
 		74902D9A244E9DE0006A6972 /* KeepThreadAliveTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeepThreadAliveTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74902D9D244E9DE0006A6972 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		74902D9E244E9DE0006A6972 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,8 +66,6 @@
 		74902DC6244E9DE2006A6972 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74902DD2244E9ECF006A6972 /* MyThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyThread.h; sourceTree = "<group>"; };
 		74902DD3244E9ECF006A6972 /* MyThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyThread.m; sourceTree = "<group>"; };
-		74902DD5244EA0EF006A6972 /* MyThreadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyThreadManager.h; sourceTree = "<group>"; };
-		74902DD6244EA0EF006A6972 /* MyThreadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyThreadManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 		74154608244EA29900B13EE1 /* CThreadManager */ = {
 			isa = PBXGroup;
 			children = (
+				7415460C244F146900B13EE1 /* CThreadManager.h */,
+				7415460D244F146900B13EE1 /* CThreadManager.m */,
 			);
 			path = CThreadManager;
 			sourceTree = "<group>";
@@ -122,6 +127,8 @@
 			children = (
 				74154608244EA29900B13EE1 /* CThreadManager */,
 				74902DD8244EA103006A6972 /* OCThreadManager */,
+				74902DD2244E9ECF006A6972 /* MyThread.h */,
+				74902DD3244E9ECF006A6972 /* MyThread.m */,
 				74154609244EC07600B13EE1 /* ThreadTaskViewController.h */,
 				7415460A244EC07600B13EE1 /* ThreadTaskViewController.m */,
 				74902D9D244E9DE0006A6972 /* AppDelegate.h */,
@@ -160,10 +167,8 @@
 		74902DD8244EA103006A6972 /* OCThreadManager */ = {
 			isa = PBXGroup;
 			children = (
-				74902DD2244E9ECF006A6972 /* MyThread.h */,
-				74902DD3244E9ECF006A6972 /* MyThread.m */,
-				74902DD5244EA0EF006A6972 /* MyThreadManager.h */,
-				74902DD6244EA0EF006A6972 /* MyThreadManager.m */,
+				7415460F244F147D00B13EE1 /* OCThreadManager.h */,
+				74154610244F147D00B13EE1 /* OCThreadManager.m */,
 			);
 			path = OCThreadManager;
 			sourceTree = "<group>";
@@ -299,11 +304,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				74902DA5244E9DE0006A6972 /* ViewController.m in Sources */,
-				74902DD7244EA0EF006A6972 /* MyThreadManager.m in Sources */,
+				7415460E244F146900B13EE1 /* CThreadManager.m in Sources */,
 				74902D9F244E9DE0006A6972 /* AppDelegate.m in Sources */,
 				74902DB0244E9DE2006A6972 /* main.m in Sources */,
 				74902DD4244E9ECF006A6972 /* MyThread.m in Sources */,
 				7415460B244EC07600B13EE1 /* ThreadTaskViewController.m in Sources */,
+				74154611244F147D00B13EE1 /* OCThreadManager.m in Sources */,
 				74902DA2244E9DE0006A6972 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
